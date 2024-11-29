@@ -5,10 +5,7 @@ import com.es.jwtsecurity.service.ProductoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/productos")
@@ -29,6 +26,26 @@ public class ProductoController {
                 p, HttpStatus.CREATED
         );
         return respuesta;
+
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<ProductoDTO> getById(
+            @PathVariable String id
+    ) {
+
+        if (id == null) {
+            //LANZO UNA EXCEPCION
+        }
+
+        ProductoDTO p = productoService.getById(id);
+
+
+        ResponseEntity<ProductoDTO> respuesta = new ResponseEntity<ProductoDTO>(
+                p, HttpStatus.OK
+        );
+        return respuesta;
+
 
     }
 

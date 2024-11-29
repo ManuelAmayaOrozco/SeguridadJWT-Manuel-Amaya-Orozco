@@ -3,6 +3,7 @@ package com.es.jwtsecurity.service;
 import com.es.jwtsecurity.dto.ProductoDTO;
 import com.es.jwtsecurity.model.Producto;
 import com.es.jwtsecurity.repository.ProductoRepository;
+import org.apache.coyote.BadRequestException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +20,22 @@ public class ProductoService {
         producto = productoRepository.save(producto);
 
         return mapToDTO(producto);
+
+    }
+
+    public ProductoDTO getById(String id) {
+
+        // Parsear el id a Long
+        Long idL = 0L;
+        idL = Long.parseLong(id);
+
+
+        Producto p = null;
+        p = productoRepository
+                .findById(idL)
+                .orElse(null);
+
+        return mapToDTO(p);
 
     }
 
