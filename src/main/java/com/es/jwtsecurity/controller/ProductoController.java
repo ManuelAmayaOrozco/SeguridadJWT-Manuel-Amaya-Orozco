@@ -17,7 +17,7 @@ public class ProductoController {
     @Autowired
     private ProductoService productoService;
 
-    @PostMapping
+    @PostMapping("/")
     public ResponseEntity<ProductoDTO> create(
             @RequestBody ProductoDTO productoDTO
     ) {
